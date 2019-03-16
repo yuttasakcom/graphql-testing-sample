@@ -1,11 +1,12 @@
-const express = require("express");
-const { ApolloServer, gql } = require("apollo-server-express");
+import express from "express";
+import { ApolloServer, gql } from "apollo-server-express";
+import prisma from "./prisma";
 
 const app = express();
 
 const typeDefs = gql`
   type Query {
-    hello: String!
+    users: [User!]!
   }
 
   type Mutation {
@@ -19,7 +20,7 @@ const typeDefs = gql`
   }
 
   type User {
-    id: ID!
+    id: String!
     name: String!
     email: String!
     password: String!
@@ -28,22 +29,23 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    hello: () => `Hello`
+    users: async () => await prisma.query.users()
   },
   Mutation: {
-    createUser: (root, { data }) => {
-      return {
-        id: "1",
-        name: "yo",
-        email: "yuttasakcom@gmail.com",
-        password: "1234"
-      };
+    async createUser(_, { data }, { prisma }, info) {
+      return await prisma.mutation.createUser({ data }, info);
     }
   }
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: {
+    prisma
+  }
+});
 
 server.applyMiddleware({ app });
 
-module.exports = app;
+export default app;
