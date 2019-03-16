@@ -32,7 +32,7 @@ const resolvers = {
     users: async () => await prisma.query.users()
   },
   Mutation: {
-    async createUser(_, { data }, { prisma }, info) {
+    async createUser(root, { data }, { prisma }, info) {
       return await prisma.mutation.createUser({ data }, info);
     }
   }

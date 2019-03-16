@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "env-cmd ./config/dev.env nodemon src/index.js --exec babel-node",
     "test": "env-cmd ./config/test.env jest --watch --runInBand",
-    "get-schema": "graphql get-schema -p prisma"
+    "get-schema": "graphql get-schema -p prisma --dotenv config/dev.env"
   },
   "jest": {
     "globalSetup": "./tests/jest/globalSetup.js",
@@ -20,10 +20,13 @@
     "prisma-binding": "^2.3.8"
   },
   "devDependencies": {
-    "apollo-boost": "^0.3.1",
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "apollo-boost": "^0.3.1",
     "babel-jest": "^24.5.0",
     "cross-fetch": "^3.0.1",
     "env-cmd": "^8.0.2",
