@@ -1,5 +1,5 @@
-const server = require("../../src/app");
+import server from "../../src/app";
 
-module.exports = async () => {
+export default async () => {
   global.httpServer = await server.listen("4000");
 };

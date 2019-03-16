@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "dev": "nodemon src/server.js --exec babel-node",
     "test": "env-cmd ./.env.test jest --watch"
   },
   "jest": {
@@ -11,12 +12,19 @@
     "globalTeardown": "./tests/jest/globalTeardown.js"
   },
   "dependencies": {
+    "apollo-boost": "^0.3.1",
     "apollo-server-express": "^2.4.8",
+    "cross-fetch": "^3.0.1",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
     "jest": "^24.5.0"
   },
   "devDependencies": {
-    "env-cmd": "^8.0.2"
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-jest": "^24.5.0",
+    "env-cmd": "^8.0.2",
+    "nodemon": "^1.18.10",
+    "@babel/node": "^7.2.2"
   }
 }
