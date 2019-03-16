@@ -4,9 +4,19 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watch"
+    "test": "env-cmd ./.env.test jest --watch"
+  },
+  "jest": {
+    "globalSetup": "./tests/jest/globalSetup.js",
+    "globalTeardown": "./tests/jest/globalTeardown.js"
   },
   "dependencies": {
+    "apollo-server-express": "^2.4.8",
+    "express": "^4.16.4",
+    "graphql": "^14.1.1",
     "jest": "^24.5.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^8.0.2"
   }
 }

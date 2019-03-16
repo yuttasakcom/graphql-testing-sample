@@ -1,1 +1,1 @@
-test("should ok", () => {});
+test("should return true", () => {});
