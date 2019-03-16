@@ -23,7 +23,7 @@ const typeDefs = gql`
     id: ID!
     name: String!
     email: String!
-    password: String!
+    password: String
   }
 `;
 
@@ -35,6 +35,9 @@ const resolvers = {
     async createUser(root, { data }, { prisma }, info) {
       return await prisma.mutation.createUser({ data }, info);
     }
+  },
+  User: {
+    password: () => null
   }
 };
 
